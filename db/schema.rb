@@ -22,8 +22,8 @@ ActiveRecord::Schema.define(version: 2019_11_25_110545) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "published_by"
-    t.integer "unpublished_by"
+    t.integer "publishing_user_id"
+    t.integer "unpublishing_user_id"
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
 

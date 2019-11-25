@@ -19,13 +19,13 @@ class ArticlesController < ApplicationController
   end
 
   def publish
-    Article.find(params[:article_id]).update(status: 1, published_by: current_user)
+    Article.find(params[:article_id]).update(status: 1, publishing_user_id: current_user.id)
     redirect_to root_path
     flash[:success] = "Article Published!"
   end
 
   def unpublish
-    Article.find(params[:article_id]).update(status: 0, unpublished_by: current_user)
+    Article.find(params[:article_id]).update(status: 0, unpublishing_user_id: current_user.id)
     redirect_to root_path
     flash[:success] = "Article Unpublished!"
   end
