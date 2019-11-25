@@ -66,3 +66,9 @@ gem 'devise'
 
 # For Authorization
 gem 'cancancan'
+
+# Bootstrap
+gem 'bootstrap', '~> 4.3.1'
+
+# jQuery
+gem 'jquery-rails'

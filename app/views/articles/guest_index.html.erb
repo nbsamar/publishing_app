@@ -1,0 +1,8 @@
+<%= render 'published' %>
+<% if current_user.nil? %>
+  <div style="margin: 1em" class="text-center">
+    <%= link_to 'Want to join as a Reporter?', new_user_registration_path, class: 'btn btn-primary' %>
+  </div>
+<% else %>
+  <%= render 'drafted' %>
+<% end %>

@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {registrations: 'registrations'}
 
   resources :articles
+  post 'publish_article', to: 'articles#publish'
+  post 'unpublish_article', to: 'articles#unpublish'
 end

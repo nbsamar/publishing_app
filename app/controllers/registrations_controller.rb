@@ -5,7 +5,9 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-    User.create!(user_create_params)
+    @user = User.create!(user_create_params)
+    sign_in(@user) # post sign up, logs in the new user
+    redirect_to articles_path
   end
 
   private

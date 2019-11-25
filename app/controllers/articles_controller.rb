@@ -1,13 +1,9 @@
 class ArticlesController < ApplicationController
-  before_action :authenticate_user, except: [:guest_index]
-  before_action :published_articles
+  before_action :authenticate_user!, except: [:guest_index]
+  before_action :published_articles, :draft_articles
 
   def index
-    @draft_articles = if current_user.reporter?
-                        Article.where(status: 0, user_id: current_user)
-                      else
-                        Article.where(status: 0)
-                      end
+
   end
 
   def guest_index
@@ -23,7 +19,15 @@ class ArticlesController < ApplicationController
   end
 
   def publish
+    Article.find(params[:article_id]).update(status: 1, published_by: current_user)
+    redirect_to root_path
+    flash[:success] = "Article Published!"
+  end
 
+  def unpublish
+    Article.find(params[:article_id]).update(status: 0, unpublished_by: current_user)
+    redirect_to root_path
+    flash[:success] = "Article Unpublished!"
   end
 
   def destroy
@@ -37,6 +41,12 @@ class ArticlesController < ApplicationController
   end
 
   def draft_articles
-    @draft_articles = Article.where(status: 0)
+    @draft_articles = if current_user.nil?
+                        nil
+                      elsif current_user.reporter?
+                        Article.where(status: 0, user_id: current_user)
+                      else
+                        Article.where(status: 0)
+                      end
   end
 end
