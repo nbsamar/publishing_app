@@ -11,10 +11,10 @@
           <thead class="thead-dark">
           <tr>
             <th>Article Name</th>
-            <th>Article Writer</th>
+            <th>Writer Name</th>
             <th>Penned Date</th>
             <th></th>
-            <% if current_user.admin? || current_user.editor? %>
+            <% if user_signed_in? && (current_user.admin? || current_user.editor?) %>
               <th></th>
             <% end %>
           </tr>
@@ -23,10 +23,10 @@
           <% @published_articles.each do |pa| %>
             <tr>
               <td><%= pa.name %></td>
-              <td><%= User.find(pa.user_id).first_name.capitalize %></td>
+              <td><%= pa.author %></td>
               <td><%= pa.created_at %>></td>
-              <td><%= link_to 'Read', article_path(pa) %></td>
-              <% if current_user.admin? || current_user.editor? %>
+              <td><%= link_to 'Read . . .', article_path(pa) %></td>
+              <% if user_signed_in? && (current_user.admin? || current_user.editor?) %>
                 <td>
                   <%= link_to 'Unpublish', unpublish_article_path(article_id: pa), method: :post, confirm: 'Unpublish this article?' %>
                 </td>

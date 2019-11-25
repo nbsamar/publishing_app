@@ -26,7 +26,7 @@
               <td><%= da.name %></td>
               <td><%= da.created_at %></td>
               <% if current_user.admin? || current_user.editor? %>
-                <td><%= User.find(da.user_id).first_name.capitalize %></td>
+                <td><%= da.author %></td>
                 <td><%= link_to 'Publish', publish_article_path(article_id: da), method: :post, confirm: 'Publish this article?' %></td>
               <% end %>
               <td><%= link_to 'Read Article . . .', article_path(da) %></td>

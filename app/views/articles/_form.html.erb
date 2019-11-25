@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="card card-center">
+    <h4><%= value %> Article:</h4>
+    <%= form_with model: article do |f| %>
+      <%= f.text_field :name %>
+      <%= f.text_area :content %>
+      <%= f.submit 'Create' %>
+    <% end %>
+  </div>
+</div>

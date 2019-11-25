@@ -1,21 +1,29 @@
 class ArticlesController < ApplicationController
-  before_action :authenticate_user!, except: [:guest_index]
+  before_action :authenticate_user!, except: [:guest_index, :show]
   before_action :published_articles, :draft_articles
 
   def index
 
   end
 
+  def show
+    @article = Article.find(params[:id])
+  end
+
   def guest_index
 
   end
 
-  def create
+  def new
 
   end
 
-  def edit
+  def create
+    current_user.articles.create(article_params)
+  end
 
+  def edit
+    @article = Article.find(params[:id])
   end
 
   def publish
@@ -35,6 +43,10 @@ class ArticlesController < ApplicationController
   end
 
   private
+
+  def article_params
+    params.require(:article).permit(:name, :content, :status)
+  end
 
   def published_articles
     @published_articles = Article.where(status: 1)
