@@ -27,7 +27,7 @@
               <td><%= da.created_at %></td>
               <% if current_user.admin? || current_user.editor? %>
                 <td><%= da.author %></td>
-                <td><%= link_to 'Publish', publish_article_path(article_id: da), method: :post, confirm: 'Publish this article?' %></td>
+                <td><%= link_to 'Publish', publish_article_path(article_id: da), method: :post, data: {confirm: 'Publish this article?'} %></td>
               <% end %>
               <td><%= link_to 'Read Article . . .', article_path(da) %></td>
             </tr>

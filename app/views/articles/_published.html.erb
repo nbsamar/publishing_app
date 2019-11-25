@@ -28,7 +28,7 @@
               <td><%= link_to 'Read . . .', article_path(pa) %></td>
               <% if user_signed_in? && (current_user.admin? || current_user.editor?) %>
                 <td>
-                  <%= link_to 'Unpublish', unpublish_article_path(article_id: pa), method: :post, confirm: 'Unpublish this article?' %>
+                  <%= link_to 'Unpublish', unpublish_article_path(article_id: pa), method: :post, data: {confirm: 'Unpublish this article?'} %>
                 </td>
               <% end %>
             </tr>
