@@ -5,4 +5,5 @@
   </div>
 <% else %>
   <%= render 'drafted' %>
+  <%= render 'editor_form' if current_user.admin? %>
 <% end %>

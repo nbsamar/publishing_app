@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
   before_action :published_articles, :draft_articles
 
   def index
-    redirect_to root_path
+
   end
 
   def show

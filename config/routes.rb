@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :articles
   post 'publish_article', to: 'articles#publish'
   post 'unpublish_article', to: 'articles#unpublish'
+  post 'create_editor', to: 'editors#create'
 end
