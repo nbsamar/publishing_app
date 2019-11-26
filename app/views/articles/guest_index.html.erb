@@ -2,8 +2,10 @@
 <% if current_user.nil? %>
   <div style="margin: 1em" class="text-center">
     <%= link_to 'Want to join as a Reporter?', new_user_registration_path, class: 'btn btn-primary' %>
+    <%= link_to 'Or Login', new_user_session_path, class: 'btn btn-info' %>
   </div>
 <% else %>
   <%= render 'drafted' %>
   <%= render 'editor_form' if current_user.admin? %>
+  <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-info' if user_signed_in? %>
 <% end %>
