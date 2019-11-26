@@ -2,7 +2,7 @@ class EditorsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    User.create(editor_params).update(role: 1)
+    User.create(editor_params.merge(role: 1))
     redirect_to root_path
     flash[:success] = 'Editor Created'
   end

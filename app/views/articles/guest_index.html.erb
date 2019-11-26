@@ -7,5 +7,5 @@
 <% else %>
   <%= render 'drafted' %>
   <%= render 'editor_form' if current_user.admin? %>
-  <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-info' if user_signed_in? %>
+  <%= link_to 'Logout', destroy_user_session_path, {method: :delete, class: 'btn btn-danger', style: "margin: 0.5em 0.5em 0.5em 6em"} if user_signed_in? %>
 <% end %>
