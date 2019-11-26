@@ -6,6 +6,12 @@ class ArticlesController < ApplicationController
 
   end
 
+  def update
+    @article = Article.find(params[:id]).update(article_params)
+    redirect_to root_path
+    flash[:notice] = 'Article Updated'
+  end
+
   def show
     @article = Article.find(params[:id])
   end
@@ -20,6 +26,8 @@ class ArticlesController < ApplicationController
 
   def create
     current_user.articles.create(article_params)
+    redirect_to root_path
+    flash[:notice] = 'Article Drafted'
   end
 
   def edit
